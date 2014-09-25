@@ -8,8 +8,4 @@ module ApplicationHelper
 		title ||= column.titleize
 		link_to title, :sort => column
 	end
-
-	def like_unlike_line(object)
-		render(:partial => 'application/like_unlike_line', :locals => {:object=> object})
-	end 
 end
