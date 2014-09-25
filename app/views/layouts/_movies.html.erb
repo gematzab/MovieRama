@@ -5,7 +5,7 @@
 			<%= days_from_creation = seconds_from_model_creation / (60*60*24) %> days ago</p>
 	<p><%= movie.description %></p>
 	<!--<div><p style="display:inline;">likes | hates</p><p style="display:inline;padding-left:400px;">Do something</p>-->
-	<% if session[:user_id] %>
+	<% if session[:user_id] && session[:user_id]!=movie.user_id%>
 		<%= render 'votes/votes', :movie => movie, :likew=> movie.movie_votes.where(:like=>true).size, :hatew =>movie.movie_votes.where(:like=>false).size %>
 	<%else%>
 		<p><%= pluralize(movie.movie_votes.where(:like=>true).size, 'like') %></p>
