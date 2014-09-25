@@ -1,0 +1,13 @@
+<br>
+<div>
+	<h3 style="display:inline;">Sort by:<%= link_to("Likes", {:controller=>'public', :action => 'index', :id=> session[:user_id], :sort_likes=> "1"}, :method => :get) %> | <%= link_to("Hates", {:controller=>'public', :action => 'index', :id=> session[:user_id], :sort_likes=> "0"}, :method => :get) %> | <%= sortable("created_at","Date") %></h3>
+	<% if session[:user_id] %>
+		<div style="position:fixed;right:50px;">
+			<%= link_to("New Movie", {:controller=>'movies', :action => 'New', :id=> session[:user_id]}, :class => "button", :method => :get) %>
+		</div>
+	<%end%>
+</div>
+<br>
+<div>
+	<%= render 'layouts/movies' %>
+</div>

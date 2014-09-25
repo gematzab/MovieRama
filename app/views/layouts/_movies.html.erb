@@ -1,0 +1,17 @@
+<% @movies.each do |movie| %>
+<div class="movie_container">
+	<h2><%= movie.title %></h2>
+	<p>Posted by <%= link_to("#{movie.user.first_name} #{movie.user.last_name}", :userid=>movie.user.id) %> <%seconds_from_model_creation = (Time.now.to_i - Time.at(movie.created_at.to_i).to_i) %>
+			<%= days_from_creation = seconds_from_model_creation / (60*60*24) %> days ago</p>
+	<p><%= movie.description %></p>
+	<!--<div><p style="display:inline;">likes | hates</p><p style="display:inline;padding-left:400px;">Do something</p>-->
+	<% if session[:user_id] %>
+		<%= render 'votes/votes', :movie => movie, :likew=> movie.movie_votes.where(:like=>true).size, :hatew =>movie.movie_votes.where(:like=>false).size %>
+	<%else%>
+		<p><%= pluralize(movie.movie_votes.where(:like=>true).size, 'like') %></p>
+		<p><%= pluralize(movie.movie_votes.where(:like=>false).size, 'hate') %></p>
+	<%end%>
+</div>
+<br>
+<%end%>
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MovieRamaTest</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery", "jquery_ujs" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+		<div>
+	      <%= render 'layouts/navigation' %>
+	    </div>
+		<main>			
+			<%= render 'layouts/messages' %>
+			<%= yield %>
+		</main>
+	</body>
+</html>

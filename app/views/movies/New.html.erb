@@ -1,0 +1,21 @@
+<div>
+	<%= error_messages_for(@movie) %>
+	<div>
+
+		<%= form_for(:movie, :url=>{:controller=> "movies", :action=>'create', :user_id=> @user.id}) do |f| %>
+    		<div>
+      			<h5>Registration takes less than 2 minutes.</h5>
+      			<label>Title<b style="color:red;">*</b>
+        			<%= f.text_field(:title, :placeholder=>"") %>
+      			</label>
+        
+       			<label>Description<b style="color:red;">*</b>
+        			<%= f.text_area(:description, :size=>"40x10") %>
+      			</label>
+    		</div> 
+		    <div>
+		      <%= button_tag("Create", :class=> "secondary button", :button_type => "submit") %>
+		    </div>
+    	<%end%>
+	</div>
+</div>

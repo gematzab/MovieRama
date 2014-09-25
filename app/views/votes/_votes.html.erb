@@ -1,0 +1,10 @@
+<div id="movie_links<%=movie.id%>">
+<% if @movies_who_voted[movie.id].present? %>
+				<div><%= link_to_if(@movies_who_voted[movie.id][0].like==true, pluralize(hatew, 'hate'), { :controller=>'votes', :action=>'like_hate', :user_id=>session[:user_id], :movie_id =>movie.id, :like=>false},'data-no-turbolink' => true, :remote=> true, :format => :js) %></div>
+				<div><%= link_to_if(@movies_who_voted[movie.id][0].like==false, pluralize(likew, 'like'), { :controller=>'votes', :action=>'like_hate', :user_id=>session[:user_id], :movie_id =>movie.id, :like=>true}, 'data-no-turbolink' => true, :format => :js, :remote=> true) %></div>
+				<div><%= link_to("Unvote", { :controller=>'votes', :action=>'unvote', :id =>@movies_who_voted[movie.id][0].id}, 'data-no-turbolink' => true, :format => :js, :remote=> true) %></div>
+		<%else%>
+			<div><%= link_to(pluralize(likew, 'like'), { :controller=>'votes', :action=>'like_hate', :user_id=>session[:user_id], :movie_id =>movie.id, :like=>true}, 'data-no-turbolink' => true, :remote=> true, :format => :js) %></div>
+			<div><%= link_to(pluralize(hatew, 'hate'), { :controller=>'votes', :action=>'like_hate', :user_id=>session[:user_id], :movie_id =>movie.id, :like=>false}, 'data-no-turbolink' => true, :remote=> true, :format => :js) %></div>
+		<%end%>
+</div>

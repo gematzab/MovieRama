@@ -1,0 +1,8 @@
+<div><h1 style="display: inline;">MovieRama</h1>
+	<% if session[:user_id] && params[:action] != "join" %>
+		<h4 style="display: inline;float:right;">Welcome Back <%= link_to("#{session[:first_name]} #{session[:last_name]}", {:controller=>'access', :action => 'logout'}, 'data-no-turbolink' => true) %></h4>
+	<% else %>	
+		<h2 style="display: inline;float:right;margin-left:18px;"><%= link_to "Log in",{:controller=>'access', :action => 'log_in'}, :method => :get  %></h2>
+		<h2 style="display: inline;float:right;"><%= link_to "Sign up",{:controller=>'users', :action => 'sign_up'},:id => "cust2", :method => :get  %></h2>
+	<%end%>
+</div>

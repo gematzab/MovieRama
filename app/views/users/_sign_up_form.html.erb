@@ -1,0 +1,31 @@
+<%= form_for(:user, :url=>{:action=>'create'}) do |f| %>
+      <div>
+        <h5>Welcome to MovieRama</h5>
+        <label>Email<b style="color:red;">*</b>
+          <%= f.text_field(:email, :placeholder=>"you@location.domain") %>
+        </label>
+      </div>
+      <div>
+        <label>First Name<b style="color:red;">*</b>
+        <%= f.text_field(:first_name, :placeholder=>"First Name") %>
+        </label>
+      </div>
+      <div>
+        <label>Last Name<b style="color:red;">*</b>
+        <%= f.text_field(:last_name, :placeholder=>"Last Name") %>
+        </label>
+      </div>
+      <div>
+        <label>Password<b style="color:red;">*</b>
+          <%= f.password_field(:password, :placeholder=>"e.g. $m3llycat!!") %>
+        </label>
+      </div>
+      <div>
+        <label>Password Confirmation<b style="color:red;">*</b>
+          <%= f.password_field(:password_confirmation, :placeholder=>"Confirm Password") %>
+        </label>
+      </div>
+      <div>
+        <%= button_tag("Sign Up", :class=> "secondary button", :button_type => "submit") %>
+      </div>
+<%end%>
