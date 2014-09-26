@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
 	before_action :confirm_logged_in
+	before_action :permit_user_to_vote, :except => [:unvote]
 	respond_to :html, :js
 	def like_hate
 		@movie= Movie.find(params[:movie_id])
@@ -37,6 +38,16 @@ class VotesController < ApplicationController
 
 end
 private
+	def permit_user_to_vote
+    	movie= Movie.find(params[:movie_id])
+    	if session[:user_id]==movie.user_id
+    		#flash[:notice] ="You can't vote your movies"
+    		redirect_to(:controller=>'public', :action=>'index', :id=> session[:user_id])  	
+			return false #halts the before_action
+    	else 
+      		return true
+      	end
+    end
     def vote_params
        params.permit(:user_id, :movie_id, :like)
     end
